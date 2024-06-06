@@ -18,7 +18,7 @@
 
 ## Installazione
 
-1. **Scarica il programma**: Scarica l'ultima versione del file eseguibile dal [repository ufficiale](URL_DEL_REPOSITORY).
+1. **Scarica il programma**: Scarica l'ultima versione del file eseguibile dal [repository ufficiale](https://github.com/Filshy/formCodiceFiscale/tree/master).
 2. **Esegui l'installazione**: Lancia il file eseguibile e segui le istruzioni per completare l'installazione.
 3. **Avvia l'applicazione**: Dopo l'installazione, avvia l'applicazione dal menu Start o dall'icona sul desktop.
 
