@@ -10,97 +10,125 @@ namespace WinFormsApp1
     {   
         public string calcoloCognome(string cognome)
         {
-            cognome = cognome.ToUpper(); // tutto in maiuscolo
-            int conteggioConsonanti = 0;
-            int conteggioVocali = 0;
-            string consonanti = "";
-            string vocali = "";
-            string codiceCognome = "";
-
-            foreach (char carattere in cognome) // per ogni carattere
+            try
             {
-                if (char.IsLetter(carattere))
+                cognome = cognome.ToUpper(); // tutto in maiuscolo
+                int conteggioConsonanti = 0;
+                int conteggioVocali = 0;
+                string consonanti = "";
+                string vocali = "";
+                string codiceCognome = "";
+
+                foreach (char carattere in cognome) // per ogni carattere
                 {
-                    if (!"AEIOU".Contains(carattere))
+                    if (char.IsLetter(carattere))
                     {
-                        consonanti = consonanti + carattere;
-                        conteggioConsonanti++;
-                    }
-                    else
-                    {
-                        vocali = vocali + carattere;
-                        conteggioVocali++;
+                        if (!"AEIOU".Contains(carattere))
+                        {
+                            consonanti = consonanti + carattere;
+                            conteggioConsonanti++;
+                        }
+                        else
+                        {
+                            vocali = vocali + carattere;
+                            conteggioVocali++;
+                        }
                     }
                 }
+
+                switch (conteggioConsonanti)
+                {
+                    case 0: codiceCognome = vocali.Substring(0, 2) + "X"; break;
+                    case 1:
+                        if (conteggioVocali == 1)
+                        {
+                            codiceCognome = consonanti[0] + vocali[0] + "X";
+                        }
+                        else
+                        {
+                            codiceCognome = consonanti[0] + vocali.Substring(0, 2);
+                        }
+                        break;
+                    case 2: codiceCognome = consonanti.Substring(0, 2) + vocali[0]; break;
+                    default: codiceCognome = consonanti.Substring(0, 3); break;
+                }
+                return codiceCognome;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Il cognome inserito non è valido");
+                Environment.Exit(Environment.ExitCode);
+                return "0";
             }
 
-            switch (conteggioConsonanti)
-            {
-                case 0: codiceCognome = vocali.Substring(0, 2) + "X"; break;
-                case 1:
-                    if (conteggioVocali == 1)
-                    {
-                        codiceCognome = consonanti[0] + vocali[0] + "X";
-                    }
-                    else
-                    {
-                        codiceCognome = consonanti[0] + vocali.Substring(0, 2);
-                    }
-                    break;
-                case 2: codiceCognome = consonanti.Substring(0, 2) + vocali[0]; break;
-                default: codiceCognome = consonanti.Substring(0, 3); break;
-            }
-            return codiceCognome;
 
         }
         public string calcoloNome(string nome)
         {
-            nome = nome.ToUpper(); // tutto in maiuscolo
 
-            int conteggioConsonanti = 0;
-            int conteggioVocali = 0;
-            string consonanti = "";
-            string vocali = "";
-            string codiceNome = "";
-
-            foreach (char carattere in nome) // per ogni carattere
+            try
             {
-                if (char.IsLetter(carattere))
+                nome = nome.ToUpper(); // tutto in maiuscolo
+
+                int conteggioConsonanti = 0;
+                int conteggioVocali = 0;
+                string consonanti = "";
+                string vocali = "";
+                string codiceNome = "";
+
+                foreach (char carattere in nome) // per ogni carattere
                 {
-                    if (!"AEIOU".Contains(carattere))
+                    if (char.IsLetter(carattere))
                     {
-                        consonanti = consonanti + carattere;
-                        conteggioConsonanti++;
-                    }
-                    else
-                    {
-                        vocali = vocali + carattere;
-                        conteggioVocali++;
+                        if (!"AEIOU".Contains(carattere))
+                        {
+                            consonanti = consonanti + carattere;
+                            conteggioConsonanti++;
+                        }
+                        else
+                        {
+                            vocali = vocali + carattere;
+                            conteggioVocali++;
+                        }
                     }
                 }
+
+                switch (conteggioConsonanti)
+                {
+                    case 0: codiceNome = vocali.Substring(0, 2) + "X"; break;
+                    case 1:
+                        if (conteggioVocali == 1)
+                        {
+                            codiceNome = consonanti[0] + vocali[0] + "X";
+                        }
+                        else
+                        {
+                            codiceNome = consonanti[0] + vocali.Substring(0, 2);
+                        }
+                        break;
+                    case 2: codiceNome = consonanti.Substring(0, 2) + vocali[0]; break;
+                    case 3: codiceNome = consonanti.Substring(0, 3); break;
+                    default: codiceNome = consonanti[0].ToString() + consonanti[2].ToString() + consonanti[3].ToString(); break;
+                }
+                return codiceNome;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Il nome inserito non è valido");
+                Environment.Exit(Environment.ExitCode);
+                return "0";
             }
 
-            switch (conteggioConsonanti)
-            {
-                case 0: codiceNome = vocali.Substring(0, 2) + "X"; break;
-                case 1:
-                    if (conteggioVocali == 1)
-                    {
-                        codiceNome = consonanti[0] + vocali[0] + "X";
-                    }
-                    else
-                    {
-                        codiceNome = consonanti[0] + vocali.Substring(0, 2);
-                    }
-                    break;
-                case 2: codiceNome = consonanti.Substring(0, 2) + vocali[0]; break;
-                case 3: codiceNome = consonanti.Substring(0, 3); break;
-                default: codiceNome = consonanti[0].ToString() + consonanti[2].ToString() + consonanti[3].ToString(); break;
-            }
-            return codiceNome;
         }
         public string calcoloData(string dataNascita, string sesso)
         {
+            if (sesso != "M" || sesso != "F")
+            {
+                MessageBox.Show("Impossibile calcolare la data");
+                Environment.Exit(Environment.ExitCode);
+                return "0";
+            }
+
             string[] mesi = { "A", "B", "C", "D", "E", "H", "L", "M", "P", "R", "S", "T" };
             string codiceData = "";
             string[] componentiData = dataNascita.Split('/'); // (3)
@@ -136,27 +164,37 @@ namespace WinFormsApp1
         }
         public string calcoloComune(string comune)
         {
-            comune.ToUpper();
-            using (var reader = new StreamReader(@"codici_catastali.csv"))
+            try
             {
-                List<string> listA = new List<string>();
-                List<string> listB = new List<string>();
-                while (!reader.EndOfStream)
+                comune.ToUpper();
+                using (var reader = new StreamReader(@"codici_catastali.csv"))
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    List<string> listA = new List<string>();
+                    List<string> listB = new List<string>();
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
 
-                    listA.Add(values[0]);
-                    listB.Add(values[2]);
-                }
+                        listA.Add(values[0]);
+                        listB.Add(values[2]);
+                    }
 
-                for (int i = 0; i < listB.Count; i++)
-                {
-                    if (comune == listB[i])
-                        return listA[i];
+                    for (int i = 0; i < listB.Count; i++)
+                    {
+                        if (comune == listB[i])
+                            return listA[i];
+                    }
+                    return "None";
                 }
-                return "None";
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Il comune inserito non è stato trovato");
+                Environment.Exit(Environment.ExitCode);
+                return "0";
+            }
+
         }
         public char calcolaCarattereControllo(string codiceFiscale)
         {

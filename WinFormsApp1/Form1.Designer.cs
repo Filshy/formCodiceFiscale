@@ -167,7 +167,7 @@
             // 
             // comboBoxSesso
             // 
-            comboBoxSesso.Anchor = AnchorStyles.None;
+            comboBoxSesso.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSesso.Font = new Font("Arial", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBoxSesso.FormattingEnabled = true;
             comboBoxSesso.Items.AddRange(new object[] { "M", "F" });
